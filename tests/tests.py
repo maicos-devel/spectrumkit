@@ -11,12 +11,19 @@ from pathlib import Path
 import MDAnalysis as mda
 import numpy as np
 import pytest
+import scipy.constants
 from numpy.testing import assert_allclose
 
-from spectrumkit import DielectricSpectrum, calculate_spectrum_from_dipole
+from spectrumkit import (
+    DielectricSpectrum,
+    WienerKhinchin,
+    calculate_spectrum_from_current,
+    calculate_spectrum_from_dipole,
+)
 
 sys.path.append(str(Path(__file__).parents[1]))
 from data import WATER_TPR_NPT, WATER_TRR_NPT
+from data.synthetic import ornstein_uhlenbeck
 
 
 class TestDielectricSpectrum:
@@ -177,3 +184,96 @@ class TestCalculateSpectrumFromDipole:
         assert_allclose(ds.results.nu, results["nu"], rtol=1e-10)
         assert_allclose(ds.results.susc, results["susc"], rtol=1e-10)
         assert_allclose(ds.results.dsusc, results["dsusc"], rtol=1e-10)
+
+
+class TestDebyeRelaxation:
+    """Compare the spectrum routes to an Ornstein-Uhlenbeck dipole.
+
+    A dipole with exponential autocorrelation <P(0)P(t)> = <P²> exp(-t/τ) has the
+    Debye susceptibility χ(ω) = χ_0 / (1 - iωτ) with χ_0 = <P²> / (3 V k_B T ε_0).
+    """
+
+    dt = 0.01  # ps
+    tau = 1.0  # ps
+    volume = 1000.0  # Å^3
+    temperature = 300.0  # K
+
+    @pytest.fixture(scope="class")
+    def dipole(self):
+        """Ornstein-Uhlenbeck dipole time series (n_frames, 3) in e·Å."""
+        return ornstein_uhlenbeck(200_000, dt=self.dt, tau=self.tau)
+
+    def debye(self, dipole, nu):
+        """Analytic Debye susceptibility for the sampled dipole variance."""
+        pref = scipy.constants.e**2 * scipy.constants.angstrom**2
+        pref /= 3 * self.volume * scipy.constants.angstrom**3
+        pref /= scipy.constants.k * self.temperature * scipy.constants.epsilon_0
+        chi_0 = pref * np.sum(np.var(dipole, axis=0))
+        return chi_0 / (1 - 2j * np.pi * nu * self.tau)
+
+    def band(self, nu):
+        """Mask for 0.5 < ωτ < 2, around the loss peak."""
+        omega_tau = 2 * np.pi * nu * self.tau
+        return (omega_tau > 0.5) & (omega_tau < 2)
+
+    @pytest.mark.parametrize(("n_dim", "sigma"), [(1, 1.0), (3, 2.5)])
+    def test_ornstein_uhlenbeck(self, n_dim, sigma):
+        """The reference process has variance σ² and decays as exp(-t/τ).
+
+        Checked with plain numpy, independent of spectrumkit.
+        """
+        x = ornstein_uhlenbeck(
+            200_000, n_dim=n_dim, dt=self.dt, tau=self.tau, sigma=sigma
+        )
+        assert x.shape == (200_000, n_dim)
+
+        x = x - x.mean(axis=0)
+        lags = np.array([0, 50, 100, 200])
+        corr = np.array(
+            [np.mean(np.sum(x[: len(x) - k] * x[k:], axis=1)) for k in lags]
+        )
+        assert_allclose(corr[0] / n_dim, sigma**2, rtol=0.1)
+        assert_allclose(corr / corr[0], np.exp(-lags * self.dt / self.tau), atol=0.05)
+
+    def test_periodogram_dipole(self, dipole):
+        """Periodogram of the dipole reproduces Im(χ)."""
+        res = calculate_spectrum_from_dipole(
+            dipole, self.dt, self.volume, self.temperature, segs=100, nobin=True
+        )
+        m = self.band(res["nu"])
+        expected = self.debye(dipole, res["nu"][m])
+        assert_allclose(np.mean(res["susc"].imag[m] / expected.imag), 1, rtol=0.05)
+
+    def test_periodogram_current(self, dipole):
+        """Periodogram of the current reproduces Im(χ)."""
+        current = np.diff(dipole, axis=0) / self.dt
+        res = calculate_spectrum_from_current(
+            current, self.dt, self.volume, self.temperature, segs=100, nobin=True
+        )
+        m = self.band(res["nu"])
+        expected = self.debye(dipole, res["nu"][m])
+        assert_allclose(np.mean(res["susc"].imag[m] / expected.imag), 1, rtol=0.05)
+
+    @pytest.mark.parametrize("spectrum_type", ["dipole", "flux"])
+    def test_wiener_khinchin(self, dipole, spectrum_type):
+        """WienerKhinchin, averaged over blocks, reproduces Im(χ)."""
+        series = dipole
+        if spectrum_type == "flux":
+            series = np.diff(dipole, axis=0) / self.dt
+        block = 2000
+        time = self.dt * np.arange(block)
+        results = [
+            WienerKhinchin(
+                time,
+                series[i : i + block],
+                self.volume,
+                self.temperature,
+                spectrum_type=spectrum_type,
+            )
+            for i in range(0, len(series) - block + 1, block)
+        ]
+        nu = results[0][0] / (2 * np.pi)
+        susc = np.mean([s for _, s in results], axis=0)
+        m = self.band(nu)
+        expected = self.debye(dipole, nu[m])
+        assert_allclose(np.mean(susc.imag[m] / expected.imag), 1, rtol=0.05)
