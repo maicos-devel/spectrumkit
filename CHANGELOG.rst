@@ -14,8 +14,11 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Add analytical validation test for dielectric spectrum of a Debye dipole (#24)
+- Fix susceptibility being a factor of 2 too large (#24)
 - Fix logarithmic binning with ``binafter=0`` (#23).
-- Require ``maicos>=0.13``, drop the ``mdacli<=0.1.35`` pin. (#20)
+- Require ``maicos>=0.13``, drop the ``mdacli<=0.1.35`` pin. (#23)
+
 
 v0.1.0 (2026/05/20)
 -------------------

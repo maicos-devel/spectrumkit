@@ -98,8 +98,8 @@ class TestDielectricSpectrum:
 
         V = 1559814.4
         nu = [0.0, 0.5, 1.0]
-        susc = [2.7 + 0.0j, 4.3 + 5.660148j, 2.7 + 5.6j]
-        dsusc = [0.5 + 0.0j, 0.7 + 0.765955j, 0.5 + 0.9j]
+        susc = [1.35 + 0.0j, 2.15 + 2.830074j, 1.35 + 2.8j]
+        dsusc = [0.25 + 0.0j, 0.35 + 0.3829775j, 0.25 + 0.45j]
 
         assert_allclose(ds.V, V, rtol=1e-1)
         assert_allclose(ds.results.nu, nu, rtol=1)
