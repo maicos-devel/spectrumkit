@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Copyright (c) 2025 Authors and contributors
 # (see the AUTHORS.rst file for the full list of names)
 #
@@ -18,7 +16,7 @@ from numpy.testing import assert_allclose
 from spectrumkit import DielectricSpectrum, calculate_spectrum_from_dipole
 
 sys.path.append(str(Path(__file__).parents[1]))
-from data import WATER_TPR_NPT, WATER_TRR_NPT  # noqa: E402
+from data import WATER_TPR_NPT, WATER_TRR_NPT
 
 
 class TestDielectricSpectrum:
