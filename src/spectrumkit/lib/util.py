@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Copyright (c) 2025 Authors and contributors
 # (see the AUTHORS.rst file for the full list of names)
 #
@@ -38,7 +36,7 @@ def bin(a: np.ndarray, bins: np.ndarray) -> np.ndarray:
     count = np.zeros(len(bins), dtype=int)
     ic = -1
 
-    for i in range(0, len(a)):
+    for i in range(len(a)):
         if i in bins:
             ic += 1  # index for new average
         avg[ic] += a[i]

@@ -121,7 +121,7 @@ def calculate_spectrum_from_dipole(
     dsusc = np.zeros(seglen, dtype=complex)
 
     # Loop over segments
-    for s in range(0, segs):
+    for s in range(segs):
         logging.info(f"\rSegment {s + 1} of {segs}")
         ss = 0 + 0j
 
@@ -198,7 +198,6 @@ def calculate_spectrum_from_dipole(
         logging.info(f"Binned data consists of {len(susc)} datapoints")
     else:
         logging.info(f"Not binning data: there are {len(susc)} datapoints")
-        pass
 
     return results
 
@@ -290,7 +289,7 @@ def calculate_spectrum_from_current(
     dsusc = np.zeros(seglen, dtype=complex)
 
     # Loop over segments
-    for s in range(0, segs):
+    for s in range(segs):
         logging.info(f"\rSegment {s + 1} of {segs}")
         ss = 0 + 0j
 
@@ -777,7 +776,6 @@ class VACF(AnalysisBase):
     @render_docs
     def save(self) -> None:
         """${SAVE_METHOD_DESCRIPTION}"""  # noqa: D415
-        ...
 
 
 def WienerKhinchin(time, timeseries, volume, temperature, spectrum_type="dipole"):
