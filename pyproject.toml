@@ -38,7 +38,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = ["maicos>=0.11.2", "mdacli<=0.1.35"]
+dependencies = ["maicos>=0.13"]
 dynamic = ["version"]
 
 [project.optional-dependencies]
@@ -51,32 +51,56 @@ issues = "https://github.com/maicos-devel/spectrumkit/issues"
 
 [tool.check-manifest]
 # ignore files missing in VCS
-ignore = ["src/spectrumkit/_version.py", "docs/src/sg_execution_times.rst"]
+ignore = ["src/spectrumkit/_version.py"]
 
 [tool.mypy]
-exclude = ["docs/src/examples"]
+exclude = ["docs/src/generated_examples"]
 follow_imports = 'skip'
 ignore_missing_imports = true
 
 [tool.coverage.paths]
 source = ["src/spectrumkit", "*/site-packages"]
 
+[tool.coverage.run]
+omit = [
+    "examples/*",
+    "src/spectrumkit/_version.py",
+    "tests/*",
+    "tests/**/*",
+    "*/tests/*",
+    "*/tests/**/*",
+]
+
 [tool.coverage.report]
 skip_covered = true
 show_missing = true
+exclude_lines = [
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "\\.\\.\\.",
+]
+omit = [
+    "examples/*",
+    "src/spectrumkit/_version.py",
+    "tests/*",
+    "tests/**/*",
+    "*/tests/*",
+    "*/tests/**/*",
+]
 
 [tool.pytest.ini_options]
 testpaths = "tests"
 python_files = ["test_*.py", "*_test.py", "tests.py"]
+filterwarnings = ["error"]
 addopts = [
     "--cov",
     "--cov-append",
     "--cov-report=",
     "--import-mode=append",
-    "--disable-warnings",
 ]
 
 [tool.ruff]
+exclude = ["docs/src/generated_examples/**", "src/spectrumkit/_version.py"]
 line-length = 88
 
 [tool.ruff.lint]
@@ -115,6 +139,14 @@ ignore = [
     "TD003",  # Missing issue link for this TODO
     "G004",  # f-strings in log messages
     "LOG015",  # Logging using root logger #TODO(@PicoCentauri): Check this
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/{docs,examples}/*" = [
+    "T20",  # Don't require any docstrings in these directories
+    "D212",  # docstring summary not starting at first line
+    "D205",  # 1 blank line required between summary line and description
+    "D415",  # sphinx-gallery labels precede the summary line
 ]
 
 [tool.ruff.lint.isort]
