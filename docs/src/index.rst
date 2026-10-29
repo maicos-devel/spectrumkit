@@ -36,16 +36,16 @@ API Documentation
 -----------------
 The :ref:`userdoc_api-documentation` section is for Spectrumkit for advanced users, it
 contains technical references and parameter list for the APIs behind the library. It
-describes the various functionalities provided by Scatterkit. You can always refer to this
-section to learn more about classes, functions, modules, and other aspects of Scatterkit
+describes the various functionalities provided by Spectrumkit. You can always refer to this
+section to learn more about classes, functions, modules, and other aspects of Spectrumkit
 machinery you may come across behind the analysis classes described in
 :ref:`userdoc-analysis-modules`.
 
 Concepts & Explanations
 -----------------------
 The :ref:`userdoc-concepts-explanations` section discusses key topics and concepts at a
-fairly high level and provides explanations to expand your knowledge of Scatterkit. It
-requires at least basic to intermediate knowledge of Scatterkit.
+fairly high level and provides explanations to expand your knowledge of Spectrumkit. It
+requires at least basic to intermediate knowledge of Spectrumkit.
 
 .. toctree::
 

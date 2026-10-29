@@ -127,7 +127,7 @@ htmlhelp_basename = "spectrumkitdoc"
 # -- Extension configuration -------------------------------------------------
 
 # Configuration for intersphinx: refer to the Python standard library
-# and other packages used by MAICoS
+# and other packages used by spectrumkit
 intersphinx_mapping = {
     "scipy": ("https://docs.scipy.org/doc/scipy/", None),
     "matplotlib": ("https://matplotlib.org/stable/", None),

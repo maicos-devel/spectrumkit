@@ -14,6 +14,8 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Fix leftover MAICoS and Scatterkit references in the documentation, document
+  ``lib.preprocessing``.
 - Check for a CHANGELOG entry in pull requests.
 - Sync ``tox``, lint and packaging configuration with MAICoS 0.13: lint
   examples, docs and the CHANGELOG, add a ``LICENSE`` file, leave ``docs`` out

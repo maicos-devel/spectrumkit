@@ -3,7 +3,7 @@
 Library functions
 #################
 
-.. automodule:: maicos.lib
+.. automodule:: spectrumkit.lib
 
 .. toctree::
    :titlesonly:
@@ -11,4 +11,5 @@ Library functions
    :caption: Library functions
 
    math
+   preprocessing
    util
