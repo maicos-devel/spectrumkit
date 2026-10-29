@@ -134,6 +134,23 @@ class TestCalculateSpectrumFromDipole:
         assert results["susc"].dtype == complex
         assert results["dsusc"].dtype == complex
 
+    def test_binning_without_unbinned_points(self):
+        """Test logarithmic binning when no low-frequency points stay unbinned."""
+        rng = np.random.default_rng(0)
+        results = calculate_spectrum_from_dipole(
+            dipole_moment=rng.standard_normal((1000, 3)),
+            dt=1.0,
+            volume=1000.0,
+            temperature=300.0,
+            segs=1,
+            bins=5,
+            binafter=0,
+        )
+
+        # the zero frequency stays on its own, the rest is binned logarithmically
+        assert results["nu_binned"][0] == results["nu"][0]
+        assert 1 < len(results["nu_binned"]) <= 6
+
     def test_consistency_with_dielectric_spectrum(self, monkeypatch, tmp_path):
         """Test that standalone function gives same results as class method."""
         monkeypatch.chdir(tmp_path)

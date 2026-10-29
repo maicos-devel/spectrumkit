@@ -14,6 +14,7 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Treat all warnings as errors in tests.
 - Require ``maicos>=0.13``, drop the ``mdacli<=0.1.35`` pin. (#20)
 
 v0.1.0 (2026/05/20)

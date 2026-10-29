@@ -68,12 +68,12 @@ show_missing = true
 [tool.pytest.ini_options]
 testpaths = "tests"
 python_files = ["test_*.py", "*_test.py", "tests.py"]
+filterwarnings = ["error"]
 addopts = [
     "--cov",
     "--cov-append",
     "--cov-report=",
     "--import-mode=append",
-    "--disable-warnings",
 ]
 
 [tool.ruff]
