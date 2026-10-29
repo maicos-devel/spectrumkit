@@ -14,6 +14,8 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Test weekly against the MAICoS dev version and the latest release, run
+  doctests.
 - Fix logarithmic binning with ``binafter=0``, which averaged the whole spectrum
   into one bin.
 - Treat all warnings as errors in tests.
