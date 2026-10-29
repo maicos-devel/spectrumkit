@@ -14,6 +14,7 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Test on macOS and Windows, upload coverage to Codecov.
 - Test weekly against the MAICoS dev version and the latest release, run
   doctests.
 - Fix logarithmic binning with ``binafter=0``, which averaged the whole spectrum

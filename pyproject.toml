@@ -61,9 +61,32 @@ ignore_missing_imports = true
 [tool.coverage.paths]
 source = ["src/spectrumkit", "*/site-packages"]
 
+[tool.coverage.run]
+omit = [
+    "examples/*",
+    "src/spectrumkit/_version.py",
+    "tests/*",
+    "tests/**/*",
+    "*/tests/*",
+    "*/tests/**/*",
+]
+
 [tool.coverage.report]
 skip_covered = true
 show_missing = true
+exclude_lines = [
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "\\.\\.\\.",
+]
+omit = [
+    "examples/*",
+    "src/spectrumkit/_version.py",
+    "tests/*",
+    "tests/**/*",
+    "*/tests/*",
+    "*/tests/**/*",
+]
 
 [tool.pytest.ini_options]
 testpaths = "tests"

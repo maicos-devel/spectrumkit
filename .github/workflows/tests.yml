@@ -11,13 +11,19 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-24.04
-    name: Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
     strategy:
       matrix:
-        python-version:
-          - "3.11"
-          - "3.14"
+        include:
+          - os: ubuntu-latest
+            python-version: "3.11"
+          - os: ubuntu-latest
+            python-version: "3.14"
+          - os: macos-latest
+            python-version: "3.14"
+          - os: windows-latest
+            python-version: "3.14"
 
     steps:
     - uses: actions/checkout@v7
@@ -33,13 +39,13 @@ jobs:
     - run: python -m pip install tox coverage[toml]
 
     - name: run Python tests
-      run: |
-        tox -e tests
-        # coverage xml
+      run: tox -e tests
+    - name: generate coverage report
+      run: coverage xml
 
-    # - name: upload to codecov.io
-    #   uses: codecov/codecov-action@v5
-    #   with:
-    #     fail_ci_if_error: true
-    #     files: tests/coverage.xml
-    #     token: ${{ secrets.CODECOV_TOKEN }}
+    - name: upload to codecov.io
+      uses: codecov/codecov-action@v7
+      with:
+        fail_ci_if_error: true
+        files: coverage.xml
+        token: ${{ secrets.CODECOV_TOKEN }}
