@@ -28,7 +28,7 @@ def bin(a: np.ndarray, bins: np.ndarray) -> np.ndarray:
     The "bins" array should contain the INDEX (integer) where each bin begins.
 
     """
-    if np.iscomplex(a).any():
+    if np.iscomplexobj(a):
         avg = np.zeros(len(bins), dtype=complex)  # average of data
     else:
         avg = np.zeros(len(bins))

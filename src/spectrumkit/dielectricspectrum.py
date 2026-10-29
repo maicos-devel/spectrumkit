@@ -183,12 +183,14 @@ def calculate_spectrum_from_dipole(
 
     # Bin data if there are too many points
     if not nobin and seglen > bins:
+        # the zero frequency always stays unbinned, the log spacing can't start at 0
+        unbinned = max(binafter, 1)
         bin_indices = np.logspace(
-            np.log(binafter) / np.log(10),
+            np.log(unbinned) / np.log(10),
             np.log(len(susc)) / np.log(10),
             bins - binafter + 1,
         ).astype(int)
-        bin_indices = np.unique(np.append(np.arange(binafter), bin_indices))[:-1]
+        bin_indices = np.unique(np.append(np.arange(unbinned), bin_indices))[:-1]
 
         results["nu_binned"] = bin(nu, bin_indices)
         results["susc_binned"] = bin(susc, bin_indices)
@@ -353,12 +355,14 @@ def calculate_spectrum_from_current(
 
     # Bin data if there are too many points
     if not nobin and seglen > bins:
+        # the zero frequency always stays unbinned, the log spacing can't start at 0
+        unbinned = max(binafter, 1)
         bin_indices = np.logspace(
-            np.log(binafter) / np.log(10),
+            np.log(unbinned) / np.log(10),
             np.log(len(susc)) / np.log(10),
             bins - binafter + 1,
         ).astype(int)
-        bin_indices = np.unique(np.append(np.arange(binafter), bin_indices))[:-1]
+        bin_indices = np.unique(np.append(np.arange(unbinned), bin_indices))[:-1]
 
         results["nu_binned"] = bin(nu, bin_indices)
         results["susc_binned"] = bin(susc, bin_indices)

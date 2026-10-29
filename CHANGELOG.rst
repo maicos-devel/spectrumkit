@@ -14,6 +14,8 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Fix logarithmic binning with ``binafter=0``, which averaged the whole spectrum
+  into one bin.
 - Treat all warnings as errors in tests.
 - Require ``maicos>=0.13``, drop the ``mdacli<=0.1.35`` pin. (#20)
 
