@@ -14,6 +14,7 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Add issue forms and contributing guidelines.
 - Fix leftover MAICoS and Scatterkit references in the documentation, document
   ``lib.preprocessing``.
 - Check for a CHANGELOG entry in pull requests.
