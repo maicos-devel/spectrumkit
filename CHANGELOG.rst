@@ -14,19 +14,7 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
-- Add issue forms and contributing guidelines.
-- Fix leftover MAICoS and Scatterkit references in the documentation, document
-  ``lib.preprocessing``.
-- Check for a CHANGELOG entry in pull requests.
-- Sync ``tox``, lint and packaging configuration with MAICoS 0.13: lint
-  examples, docs and the CHANGELOG, add a ``LICENSE`` file, leave ``docs`` out
-  of the source distribution.
-- Test on macOS and Windows, upload coverage to Codecov.
-- Test weekly against the MAICoS dev version and the latest release, run
-  doctests.
-- Fix logarithmic binning with ``binafter=0``, which averaged the whole
-  spectrum into one bin.
-- Treat all warnings as errors in tests.
+- Fix logarithmic binning with ``binafter=0`` (#23).
 - Require ``maicos>=0.13``, drop the ``mdacli<=0.1.35`` pin. (#20)
 
 v0.1.0 (2026/05/20)
