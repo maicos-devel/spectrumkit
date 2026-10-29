@@ -38,7 +38,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = ["maicos>=0.11.2", "mdacli<=0.1.35"]
+dependencies = ["maicos>=0.13"]
 dynamic = ["version"]
 
 [project.optional-dependencies]
