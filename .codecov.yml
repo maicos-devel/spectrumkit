@@ -1,0 +1,12 @@
+coverage:
+  ignore:
+    - "examples/.*"
+    - "src/spectrumkit/_version.py"
+    - "tests/.*"
+  status:
+    project:
+      default:
+        target: auto
+    patch: false
+
+comment: false

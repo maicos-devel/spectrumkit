@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """.. _howto-mdanalysis-workflow:
 
 MDAnalysis Workflow
@@ -11,6 +10,7 @@ exactly as before, maintaining backward compatibility.
 """
 
 import MDAnalysis as mda
+
 from spectrumkit import DielectricSpectrum
 
 # %%
@@ -49,8 +49,9 @@ analysis.run()
 print(f"Average volume: {analysis.results.V:.2f} Ų")
 print(f"Number of frames: {len(analysis.results.P)}")
 print(f"Frequency points: {len(analysis.results.nu)}")
-print(f"Frequency range: {analysis.results.nu[0]:.4f} - "
-      f"{analysis.results.nu[-1]:.4f} THz")
+print(
+    f"Frequency range: {analysis.results.nu[0]:.4f} - {analysis.results.nu[-1]:.4f} THz"
+)
 
 # %%
 #

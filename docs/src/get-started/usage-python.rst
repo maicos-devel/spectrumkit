@@ -9,4 +9,4 @@ To use Spectrumkit using the Python interpreter see
   the Molecular Analysis for Interfacial and Confined Systems toolkit.
 
 .. _MAICOS tutorial:
-   https://maicos-analysis.org/stable/examples/usage-python.html
+   https://maicos-analysis.org/stable/get-started/basic-usage.html

@@ -11,6 +11,12 @@ The rules for spectrumkit's CHANGELOG file:
 
 .. inclusion-marker-changelog-start
 
+Unreleased
+----------
+
+- Fix logarithmic binning with ``binafter=0`` (#23).
+- Require ``maicos>=0.13``, drop the ``mdacli<=0.1.35`` pin. (#20)
+
 v0.1.0 (2026/05/20)
 -------------------
 

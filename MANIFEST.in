@@ -1,25 +1,19 @@
 graft src
-recursive-include docs *.bib
-recursive-include docs *.py
-recursive-include docs *.rst
-recursive-include docs *.svg
-recursive-include docs *.txt
-prune docs/build
-prune docs/src/generated_examples
 
-include AUTHORS.rst
-include CHANGELOG.rst
-include README.rst
-include MANIFEST.in
+include *.rst
+include LICENSE
 
 prune .tox
 prune developer
+prune docs
 prune examples
 prune tests
+prune .github
 
 exclude .gitattributes
 exclude .gitignore
-exclude tox.ini
 exclude .readthedocs.yml
+exclude .codecov.yml
+exclude tox.ini
 
 global-exclude *.py[cod] __pycache__/* *.so *.dylib
