@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 r""".. _howto-debye-relaxation:
 
 Debye relaxation of an Ornstein-Uhlenbeck dipole
