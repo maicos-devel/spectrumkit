@@ -199,9 +199,10 @@ class TestDebyeRelaxation:
     temperature = 300.0  # K
 
     @pytest.fixture(scope="class")
-    def dipole(self):
+    @classmethod
+    def dipole(cls):
         """Ornstein-Uhlenbeck dipole time series (n_frames, 3) in e·Å."""
-        return ornstein_uhlenbeck(200_000, dt=self.dt, tau=self.tau)
+        return ornstein_uhlenbeck(200_000, dt=cls.dt, tau=cls.tau)
 
     def debye(self, dipole, nu):
         """Analytic Debye susceptibility for the sampled dipole variance."""
