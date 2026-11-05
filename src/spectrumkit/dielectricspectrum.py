@@ -156,9 +156,10 @@ def calculate_spectrum_from_dipole(
     dsusc.real = np.sqrt(dsusc.real)
     dsusc.imag = np.sqrt(dsusc.imag)
 
-    # Normalization factor
-    susc *= pref / (seglen * segs * dt)
-    dsusc *= pref / (seglen * segs * dt)
+    # Normalization: 1/T turns |FT(P)|² into the power spectrum S(ω), and the
+    # classical fluctuation-dissipation theorem gives χ''(ω) ∝ ω S(ω) / 2.
+    susc *= pref / (2 * seglen * segs * dt)
+    dsusc *= pref / (2 * seglen * segs * dt)
 
     # Convert to THz
     nu = nu / (2 * np.pi)
@@ -328,9 +329,10 @@ def calculate_spectrum_from_current(
     dsusc.real = np.sqrt(dsusc.real)
     dsusc.imag = np.sqrt(dsusc.imag)
 
-    # Normalization factor
-    susc *= pref / (seglen * segs * dt)
-    dsusc *= pref / (seglen * segs * dt)
+    # Normalization: 1/T turns |FT(P)|² into the power spectrum S(ω), and the
+    # classical fluctuation-dissipation theorem gives χ''(ω) ∝ ω S(ω) / 2.
+    susc *= pref / (2 * seglen * segs * dt)
+    dsusc *= pref / (2 * seglen * segs * dt)
 
     # Convert to THz
     nu = nu / (2 * np.pi)
@@ -826,7 +828,8 @@ def WienerKhinchin(time, timeseries, volume, temperature, spectrum_type="dipole"
     pref /= 3 * volume * scipy.constants.angstrom**3
     pref /= scipy.constants.epsilon_0 * scipy.constants.k * temperature
 
-    dielectricspectrum_imag = powerspectrum * pref
+    # Classical fluctuation-dissipation theorem: χ''(ω) = ω S_PP(ω) / 2
+    dielectricspectrum_imag = powerspectrum * pref / 2
 
     if spectrum_type == "dipole":
         dielectricspectrum_imag *= nu
