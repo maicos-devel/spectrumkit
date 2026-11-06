@@ -39,7 +39,7 @@ reported to the `project maintainers`_.
 This Code of Conduct is adapted from the `Contributor Covenant`_, version 1.1.0,
 available at https://contributor-covenant.org/version/1/1/0/
 
-.. _`project maintainers` : https://github.com/maicos-devel/spectrumkit/blob/main/AUTHORS.rst
+.. _`project maintainers` : https://github.com/atomistic-lab/spectrumkit/blob/main/AUTHORS.rst
 .. _`Contributor Covenant` : https://contributor-covenant.org
 
 Getting involved
@@ -49,7 +49,7 @@ Contribution via pull requests are always welcome. Source code is available from
 `GitHub`_. Before submitting a pull request, please open an issue to discuss your
 changes. Use only the ``main`` branch for submitting your requests.
 
-.. _`GitHub` : https://github.com/maicos-devel/spectrumkit/
+.. _`GitHub` : https://github.com/atomistic-lab/spectrumkit/
 
 By contributing to Spectrumkit, you accept and agree to the following terms and
 conditions for your present and future contributions submitted to Spectrumkit. Except for
@@ -94,7 +94,7 @@ To run the tests, the linters, or build the documentation use
   tox -e docs
 
 .. _Tox: https://tox.readthedocs.io/en/latest/
-.. _`Spectrumkit develop project` : https://github.com/maicos-devel/spectrumkit
+.. _`Spectrumkit develop project` : https://github.com/atomistic-lab/spectrumkit
 
 Useful developer scripts
 ------------------------

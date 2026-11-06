@@ -22,7 +22,7 @@ possible improvements and usages of Spectrumkit.
 
 .. _`MDAnalysis`: https://www.mdanalysis.org
 .. _`Twitter`: https://twitter.com/maicos_analysis
-.. _`GitHub`: https://github.com/maicos-devel/spectrumkit
+.. _`GitHub`: https://github.com/atomistic-lab/spectrumkit
 .. _`Discord`: https://discord.gg/mnrEQWVAed
 
 .. inclusion-readme-intro-end
@@ -33,8 +33,8 @@ Documentation
 For details, tutorials, and examples, visit our official `documentation`_. We also
 provide the `latest documentation`_ for the current development version of Spectrumkit.
 
-.. _`documentation`: https://maicos-devel.github.io/spectrumkit
-.. _`latest documentation`: https://maicos-devel.github.io/spectrumkit/latest
+.. _`documentation`: https://atomistic-lab.github.io/spectrumkit
+.. _`latest documentation`: https://atomistic-lab.github.io/spectrumkit/latest
 
 .. inclusion-readme-installation-start
 
@@ -72,16 +72,16 @@ Contributors
 
 Thanks to all contributors who make **Spectrumkit** possible:
 
-.. image:: https://contrib.rocks/image?repo=maicos-devel/spectrumkit
-   :target: https://github.com/maicos-devel/spectrumkit/graphs/contributors
+.. image:: https://contrib.rocks/image?repo=atomistic-lab/spectrumkit
+   :target: https://github.com/atomistic-lab/spectrumkit/graphs/contributors
 
-.. |tests| image:: https://github.com/maicos-devel/spectrumkit/workflows/Tests/badge.svg
+.. |tests| image:: https://github.com/atomistic-lab/spectrumkit/workflows/Tests/badge.svg
    :alt: GitHub Actions Tests Job Status
-   :target: https://github.com/maicos-devel/spectrumkit/actions?query=branch%3Amain
+   :target: https://github.com/atomistic-lab/spectrumkit/actions?query=branch%3Amain
 
-.. |codecov| image:: https://codecov.io/gh/maicos-devel/spectrumkit/graph/badge.svg?token=9AXPLF6CR3
+.. |codecov| image:: https://codecov.io/gh/atomistic-lab/spectrumkit/graph/badge.svg?token=9AXPLF6CR3
    :alt: Code coverage
-   :target: https://codecov.io/gh/maicos-devel/spectrumkit
+   :target: https://codecov.io/gh/atomistic-lab/spectrumkit
 
 .. |docs-stable| image:: https://img.shields.io/badge/📚_Documentation-stable-success
    :alt: Documentation of stable released version

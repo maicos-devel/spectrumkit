@@ -14,6 +14,7 @@ The rules for spectrumkit's CHANGELOG file:
 Unreleased
 ----------
 
+- Update GitHub URLs for the org rename ``maicos-devel`` -> ``atomistic-lab``.
 - Fix logarithmic binning with ``binafter=0`` (#23).
 - Require ``maicos>=0.13``, drop the ``mdacli<=0.1.35`` pin. (#20)
 
