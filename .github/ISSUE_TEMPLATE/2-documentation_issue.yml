@@ -13,7 +13,7 @@ body:
       label: Location of the issue
       description: |
         Provide the location of the documentation issue. This could be a URL, file path, or section heading.
-      placeholder: e.g., https://maicos-devel.github.io/spectrumkit/stable/get-started/installation.html or "Getting started -> Installation"
+      placeholder: e.g., https://atomistic-lab.github.io/spectrumkit/stable/get-started/installation.html or "Getting started -> Installation"
     validations:
       required: true
   - type: textarea
